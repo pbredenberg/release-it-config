@@ -5,7 +5,7 @@ export interface IRepositoryReleaseSettings {
 }
 
 const RELEASE_VERSION_NAME = 'release v${version}',
-      CHANGELOG_PATTERN: string | boolean = 'git log --pretty=format:"* %s (%h)" $(git describe --match "v[0-9]*" --abbrev=0)...HEAD',
+      CHANGELOG_PATTERN: string | boolean = 'git log --pretty=format:"* %s (%h)" $(git describe --exclude "*rc*" --abbrev=0)...HEAD',
       CHANGELOG_INFILE = 'CHANGELOG.md',
       REPOSITORY_RELEASE_SETTINGS: IRepositoryReleaseSettings = {};
 
