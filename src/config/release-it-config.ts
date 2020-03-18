@@ -1,11 +1,11 @@
-interface IRepositoryReleaseSettings {
+export interface IRepositoryReleaseSettings {
    release?: boolean;
    releaseName?: string;
    releaseNotes?: string;
 }
 
 const RELEASE_VERSION_NAME = 'release v${version}',
-      CHANGELOG_PATTERN = 'git log --pretty=format:"* %s (%h)" $(git describe --match "v[0-9]*" --abbrev=0)...HEAD',
+      CHANGELOG_PATTERN: string | boolean = 'git log --pretty=format:"* %s (%h)" $(git describe --match "v[0-9]*" --abbrev=0)...HEAD',
       CHANGELOG_INFILE = 'CHANGELOG.md',
       REPOSITORY_RELEASE_SETTINGS: IRepositoryReleaseSettings = {};
 
@@ -19,7 +19,7 @@ export default {
          preset: 'conventionalcommits',
          infile: CHANGELOG_INFILE,
       },
-      'release-it-config/plugins/pause-for-changelog.js': {
+      '@silvermine/release-it-config/dist/plugins/pause-for-changelog.js': {
          infile: CHANGELOG_INFILE,
       },
    },
@@ -28,7 +28,7 @@ export default {
       tagName: 'v${version}',
       tagAnnotation: RELEASE_VERSION_NAME,
       commitMessage: 'chore: ' + RELEASE_VERSION_NAME,
-      changelog: CHANGELOG_PATTERN as string | boolean,
+      changelog: CHANGELOG_PATTERN,
    },
    gitHub: REPOSITORY_RELEASE_SETTINGS,
    gitLab: REPOSITORY_RELEASE_SETTINGS,

@@ -1,7 +1,9 @@
-import { Plugin } from 'release-it';
+'use strict';
 
-export class PauseForChangelog extends Plugin {
-   public async beforeRelease(): Promise<void> {
+const { Plugin } = require('release-it');
+
+class PauseForChangelog extends Plugin {
+   async beforeRelease() {
       const { infile } = this.options;
 
       // Set up our interactive prompt.

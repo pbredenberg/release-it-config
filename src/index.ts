@@ -1,5 +1,8 @@
-import ReleaseIt from './config/release-it';
+import config from './config/release-it-config';
 
-export { ReleaseIt };
-
-export { PauseForChangelog } from './plugins/pause-for-changelog';
+export default {
+   plugins: config.plugins,
+   git: config.git,
+   gitHub: config.gitHub,
+   gitLab: config.gitLab,
+};
