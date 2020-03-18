@@ -7,6 +7,7 @@ module.exports = (grunt) => {
       entryFile: './src/index.ts',
       js: {
          gruntFile: 'Gruntfile.js',
+         plugins: './src/plugins/**/*.js',
          all: [
             './*.js',
             './src/**/*.js',
@@ -32,6 +33,7 @@ module.exports = (grunt) => {
       },
       out: {
          dist: './dist',
+         plugins: './dist/plugins',
          test: [ './.nyc_output', 'coverage' ],
       },
    };
@@ -77,6 +79,19 @@ module.exports = (grunt) => {
          'build-ts-outputs': [ 'build-types', 'build-esm', 'build-commonjs' ],
       },
 
+      copy: {
+         main: {
+            files: [
+               {
+                  expand: true,
+                  flatten: true,
+                  src: config.js.plugins,
+                  dest: config.out.plugins,
+               },
+            ],
+         },
+      },
+
       watch: {
          ts: {
             files: [ config.ts.src ],
@@ -95,6 +110,7 @@ module.exports = (grunt) => {
    grunt.loadNpmTasks('grunt-exec');
    grunt.loadNpmTasks('grunt-contrib-clean');
    grunt.loadNpmTasks('grunt-concurrent');
+   grunt.loadNpmTasks('grunt-contrib-copy');
    grunt.loadNpmTasks('grunt-contrib-watch');
 
    grunt.registerTask('standards', [ 'eslint:target', 'exec:standards' ]);
@@ -104,7 +120,7 @@ module.exports = (grunt) => {
    grunt.registerTask('build-esm', [ 'exec:esm' ]);
    grunt.registerTask('build-commonjs', [ 'exec:commonjs' ]);
    grunt.registerTask('build-ts-outputs', [ 'concurrent:build-ts-outputs' ]);
-   grunt.registerTask('build', [ 'concurrent:build-ts-outputs' ]);
+   grunt.registerTask('build', [ 'concurrent:build-ts-outputs', 'copy:main' ]);
 
    grunt.registerTask('develop', [ 'clean:dist', 'build', 'watch' ]);
 
