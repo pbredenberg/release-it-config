@@ -24,11 +24,16 @@ export default {
       },
    },
    git: {
-      tag: true,
+      push: false,
+      tag: false,
       tagName: 'v${version}',
       tagAnnotation: RELEASE_VERSION_NAME,
       commitMessage: 'chore: ' + RELEASE_VERSION_NAME,
       changelog: CHANGELOG_PATTERN,
+      requireUpstream: false,
+   },
+   npm: {
+      publish: false,
    },
    gitHub: REPOSITORY_RELEASE_SETTINGS,
    gitLab: REPOSITORY_RELEASE_SETTINGS,

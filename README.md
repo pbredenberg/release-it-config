@@ -46,6 +46,7 @@ module.exports = {
    plugins: config.plugins,
    git: config.git,
    gitHub: config.gitHub,
+   npm: config.npm,
 };
 ```
 
