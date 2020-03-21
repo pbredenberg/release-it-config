@@ -5,6 +5,9 @@
    "main": "./dist/commonjs/index",
    "types": "./dist/types/index.d.ts",
    "module": "./dist/esm/index",
+   "bin": {
+      "silvermine-release": "./dist/commonjs/cli.js"
+   },
    "scripts": {
       "prepare": "grunt build",
       "test": "TS_NODE_PROJECT='tests/tsconfig.json' TS_NODE_FILES=true nyc mocha --opts ./.mocha.opts"

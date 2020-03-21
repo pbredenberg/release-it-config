@@ -64,6 +64,10 @@ Release a prerelease:
 
 `release-it --config='release-it.js' --preRelease='rc'`
 
+or an alpha:
+
+`release-it --config='release-it.js' --preRelease='alpha'`
+
 To avoid having to install the global package, you can also add the following npm scripts to your `package.json`'s npm `scripts: {}` object:
 
 ```json
