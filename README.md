@@ -33,7 +33,36 @@ Install the package:
 
 `npm install -D https://github.com/pbredenberg/release-it-config.git` (npm registration pending)
 
-### Configure
+### Use
+
+If you have this project installed globally you can use the following commands:
+
+#### Run a release:
+
+`silvermine-release`
+
+#### Run a prerelease:
+
+`silvermine-release --pre-release=rc`
+
+or an alpha:
+
+`silvermine-release --pre-release=alpha`
+
+#### NPM Scripts
+
+To avoid having to install the global package, you can also add npm scripts to your `package.json`'s npm `scripts: {}` object.
+
+For example:
+
+```json
+    "release-it-rc": "silvermine-release --pre-release=rc",
+    "release-it": "silvermine-release"
+```
+
+### Use Config Only
+
+If you want to skip using the tool, and instead use `release-it` as intended, you can do that too.
 
 Add a file called `release-it.js` to your project root, with the following contents:
 
@@ -52,31 +81,42 @@ module.exports = {
 
 You can [configure the above](https://www.npmjs.com/package/release-it#configuration) as neccessary to suit your project.
 
-### Use
-
-If you have Release It! installed globally you can use the following commands:
-
-Release it!
+You can now run `release-it` commands, passing our config:
 
 `release-it --config='release-it.js'`
 
-Release a prerelease:
+## Release Process
 
-`release-it --config='release-it.js' --preRelease='rc'`
+1. With a clean working directory, checkout a branch for your release, something like `user/prepare-v.YOUR.VERSION.NUMBER`.
 
-or an alpha:
+2. Run `silvermine-release --release` (or `--pre-release={rc | alpha | beta}`).
+    - During this step, silvermine-release will generate a changelog, and pause for editing.
+    - Press `Y` when you've finished editing the changelog to your liking.
+    - Press `Y` when prompted to commit the version bump.
+    - Push the branch and create a PR or MR for the release.
 
-`release-it --config='release-it.js' --preRelease='alpha'`
+3. Once merged, run `silvermine-release --tag`.
+    - Press `Y` to tag the release.
+    - Press `Y` to push the tags.
 
-To avoid having to install the global package, you can also add the following npm scripts to your `package.json`'s npm `scripts: {}` object:
+4. Release
+    - At this point you can run the registry release manually if applicable.
 
-```json
-    "release-it-rc": "npm run release-it -- --preRelease='rc'",
-    "release-it": "release-it --config='release-it.js'"
-```
+## Fixing Problems
+
+- **Changelog editing**: If something goes wrong during the changelog step, you'll have to
+  reset your working directory so you can start over: `git reset HEAD --hard`.
+- **Commit/Bump**: If you need to bail out of the process during this step, you can simply
+  issue `CTRL + C` and release-it will gracefully roll back any changes for you.
+- **Tagging**: If something goes wrong during this step (such as if you had changes locally
+  but not on the remote), you will either have to:
+    - Delete the local/remote tag: `git tag -d TAGNAME`, `git push -d origin TAGNAME`
+    - Or, if you have the tag locally, but not remotely, push the tag manually:
+      `git push origin TAGNAME`.
+
+
 
 ## License
 
 This software is released under the MIT license. See [the license
 file](LICENSE) for more details.
-

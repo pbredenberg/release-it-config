@@ -4,6 +4,30 @@ export interface IRepositoryReleaseSettings {
    releaseNotes?: string;
 }
 
+export interface IReleaseItOptions {
+   plugins?: {
+      [pluginName: string]: {
+         preset?: string;
+         infile?: string;
+      };
+   };
+   preRelease?: string;
+   git?: {
+      push?: boolean;
+      tag?: boolean | string;
+      tagName?: string;
+      tagAnnotation?: string;
+      commitMessage?: string;
+      changelog?: string | boolean;
+      requireUpstream?: boolean;
+   };
+   npm: {
+      publish: boolean;
+   };
+   gitHub?: IRepositoryReleaseSettings;
+   gitLub?: IRepositoryReleaseSettings;
+}
+
 const RELEASE_VERSION_NAME = 'release v${version}',
       CHANGELOG_PATTERN: string | boolean = 'git log --pretty=format:"* %s (%h)" $(git describe --exclude "*rc*" --abbrev=0)...HEAD',
       CHANGELOG_INFILE = 'CHANGELOG.md',
@@ -19,8 +43,7 @@ export default {
          preset: 'conventionalcommits',
          infile: CHANGELOG_INFILE,
       },
-      // '@silvermine/release-it-config/dist/plugins/pause-for-changelog.js': {
-      './dist/plugins/pause-for-changelog.js': {
+      '@silvermine/release-it-config/dist/plugins/pause-for-changelog.js': {
          infile: CHANGELOG_INFILE,
       },
    },
@@ -38,4 +61,4 @@ export default {
    },
    gitHub: REPOSITORY_RELEASE_SETTINGS,
    gitLab: REPOSITORY_RELEASE_SETTINGS,
-};
+} as IReleaseItOptions;
