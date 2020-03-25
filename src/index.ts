@@ -43,8 +43,7 @@ export default {
          preset: 'conventionalcommits',
          infile: CHANGELOG_INFILE,
       },
-      // '@silvermine/release-it-config/dist/plugins/pause-for-changelog.js': {
-      './dist/plugins/pause-for-changelog.js': {
+      '@silvermine/release-it-config/dist/plugins/pause-for-changelog.js': {
          infile: CHANGELOG_INFILE,
       },
    },
