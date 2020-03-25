@@ -19,7 +19,7 @@ export default (options: string[], config: IReleaseItOptions): boolean => {
 
    config.preRelease = option;
    config.plugins = {};
-   config.git = { changelog: false };
+   config.git.changelog = false;
 
    return true;
 };

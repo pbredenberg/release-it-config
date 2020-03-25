@@ -12,7 +12,7 @@ export interface IReleaseItOptions {
       };
    };
    preRelease?: string;
-   git?: {
+   git: {
       push?: boolean;
       tag?: boolean | string;
       tagName?: string;
