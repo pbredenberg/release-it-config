@@ -1,9 +1,9 @@
 import preReleaseCommand from './pre-release.command';
-import releaseNPM from './release-npm.command';
+import tag from './tag.command';
 import helpCommand from './help.command';
 
 export {
    preReleaseCommand,
-   releaseNPM,
+   tag,
    helpCommand,
 };

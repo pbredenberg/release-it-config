@@ -4,7 +4,7 @@ import _ from 'underscore';
 import releaseItOptions, { IReleaseItOptions } from '../index';
 import {
    preReleaseCommand,
-   releaseNPM,
+   tag,
    helpCommand,
 } from './commands';
 
@@ -43,8 +43,8 @@ const run = (): void => {
          return true;
       } else if (argument === 'pre-release') {
          return preReleaseCommand([ option ], config);
-      } else if (argument === 'release-npm') {
-         return releaseNPM(config);
+      } else if (argument === 'tag') {
+         return tag(config);
       } else if (argument === 'help') {
          return helpCommand();
       }

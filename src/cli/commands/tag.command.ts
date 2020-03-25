@@ -15,9 +15,6 @@ export default (config: IReleaseItOptions): boolean => {
                changelog: false,
             }
          ),
-         npm: {
-            publish: true,
-         },
       }
    );
 
