@@ -33,7 +33,36 @@ Install the package:
 
 `npm install -D https://github.com/pbredenberg/release-it-config.git` (npm registration pending)
 
-### Configure
+### Use
+
+If you have this project installed globally you can use the following commands:
+
+#### Run a release:
+
+`silvermine-release`
+
+#### Run a prerelease:
+
+`silvermine-release --pre-release=rc`
+
+or an alpha:
+
+`silvermine-release --pre-release=alpha`
+
+#### NPM Scripts
+
+To avoid having to install the global package, you can also add npm scripts to your `package.json`'s npm `scripts: {}` object.
+
+For example:
+
+```json
+    "release-it-rc": "silvermine-release --pre-release=rc",
+    "release-it": "silvermine-release"
+```
+
+### Use Config Only
+
+If you want to skip using the tool, and instead use `release-it` as intended, you can do that too.
 
 Add a file called `release-it.js` to your project root, with the following contents:
 
@@ -52,31 +81,11 @@ module.exports = {
 
 You can [configure the above](https://www.npmjs.com/package/release-it#configuration) as neccessary to suit your project.
 
-### Use
-
-If you have Release It! installed globally you can use the following commands:
-
-Release it!
+You can now run `release-it` commands, passing our config:
 
 `release-it --config='release-it.js'`
-
-Release a prerelease:
-
-`release-it --config='release-it.js' --preRelease='rc'`
-
-or an alpha:
-
-`release-it --config='release-it.js' --preRelease='alpha'`
-
-To avoid having to install the global package, you can also add the following npm scripts to your `package.json`'s npm `scripts: {}` object:
-
-```json
-    "release-it-rc": "npm run release-it -- --preRelease='rc'",
-    "release-it": "release-it --config='release-it.js'"
-```
 
 ## License
 
 This software is released under the MIT license. See [the license
 file](LICENSE) for more details.
-
