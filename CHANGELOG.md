@@ -1,3 +1,9 @@
+## 1.2.0 (2020-03-25)
+
+### Bug Fixes
+
+* npm command should be a git command ([ec5677a](https://github.com/silvermine/release-it-config/commit/ec5677a79a2ed420042dd7faa8d59b1c188fadf0))
+
 ## 1.1.0 (2020-03-25)
 
 
